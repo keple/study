@@ -6,23 +6,49 @@
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.23/angular-ui-router.js"></script>
     <link rel="stylesheet" href="../css/main.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src='../js/main.js'></script>
 </head>
-<body>
-    <header
+<body ng-app="app">
+    <header id="head_1"
         class="header" 
         ng-app="navigation"
         ng-controller="navControll as nav">
-            <img class="logo" src='../../public/img/logo192.png'>
+            <img class="logo" src='../../public/img/logo192.png' >
             <nav>
                 <ul class="nav_item">
-                    <li><a>Service</a></li>
-                    <li><a>Projects</a></li>
+                    <li ng-repeat ="tm in nav.topMenus"><i class="{{tm.iconClass}}" aria-hidden="true"></i>&nbsp;<a>{{tm.name}}</a></li>
                 </ul>
             </nav>  
-            <a href="#"><button>Contact</button></a>
-       
+            <a href="#/"><button>Contact</button></a>
     </header>
+
+    <section class="content_container">
+        <section class="left_side"  ng-app="menuModule" ng-controller="menuCtrl as mcl">
+            <div class="menu_bar" >
+                <ul class="menu_items" >
+                    <li ng-repeat= "mn in mcl.menuList"
+                        ng-click="mcl.movePage($index)"
+                        >
+                        <i class="{{mn.iconClass}}" aria-hidden="true"></i>
+                        {{mn.name}}
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="right_side" >
+            <div ng-app="contents" ng-controller="contentsCtrl" class="contents">
+                <ng-view></ng-view>
+            </div>
+        </section>
+    </section>
+    <section>
+        <footer>
+            
+        </footer>
+    </section>
 </body>
 </html>
