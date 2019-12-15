@@ -1,4 +1,4 @@
-var app = angular.module('app',['navigation','contents','menu'])
+var app = angular.module('app',['navigation','contents','menu','defaultView'])
 
 var nav = angular.module('navigation',[]);
 nav.controller('navControll',function(navService){
@@ -41,8 +41,9 @@ contents.config(function($routeProvider){
     })
     .otherwise({redirectTo:'/'})
 });
-contents.controller('contentsCtrl',function(){
+contents.controller('contentsCtrl',function($scope){
 
+  
 });
 contents.service('contentsServ',function(){
 
@@ -106,3 +107,6 @@ menu.controller('menuCtrl',function($state){
 menu.service('menuService',function(){
 
 });
+
+
+
