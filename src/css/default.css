@@ -32,6 +32,12 @@
     height:80%;
     
 }
-.inner-items{
-    
+.flex-section{
+    width:100%;
+    min-height:32%;
+    margin-bottom:1%;
+    background:rgba(65, 255, 255, 0.4);
+}
+.flex-column{
+    flex-direction: column;
 }

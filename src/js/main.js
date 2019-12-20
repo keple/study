@@ -1,4 +1,4 @@
-var app = angular.module('app',['navigation','contents','menu','defaultView'])
+var app = angular.module('app',['navigation','contents','menu','defaultView','settingView'])
 
 var nav = angular.module('navigation',[]);
 nav.controller('navControll',function(navService){
@@ -31,13 +31,13 @@ var contents = angular.module('contents',['ngRoute']);
 
 contents.config(function($routeProvider){
     $routeProvider.when('/',{
-        templateUrl:'/src/html/default.html'
+        templateUrl:'/src/html/tpl/default.html'
     })
     .when('/setting',{
-        templateUrl:'/src/html/setting.html'
+        templateUrl:'/src/html/tpl/setting.html'
     })
     .when('/moniter',{
-        templateUrl:'/src/html/moniter.html'
+        templateUrl:'/src/html/tpl/moniter.html'
     })
     .otherwise({redirectTo:'/'})
 });
@@ -53,17 +53,17 @@ var menu = angular.module('menu',['ui.router']);
 menu.config(function($stateProvider){
     $stateProvider.state('/',{
         url:'/',
-        templateUrl:'/src/html/default.html',
+        templateUrl:'/src/html/tpl/default.html',
         controller:'contentsCtrl'
     })
     .state('/setting',{
         url:'/setting',
-        templateUrl:'/src/html/setting.html',
+        templateUrl:'/src/html/tpl/setting.html',
         controller:'contentsCtrl'
     })
     .state('/moniter',{
         url:'/moniter',
-        templateUrl:'/src/html/moniter.html',
+        templateUrl:'/src/html/tpl/moniter.html',
         controller:'contentsCtrl'
     })
 

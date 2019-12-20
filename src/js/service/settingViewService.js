@@ -1,0 +1,3 @@
+settingView.service('settingViewService',function(){
+    
+});
