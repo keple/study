@@ -93,7 +93,94 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: Cannot find module 'babel-core'\n    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:581:15)\n    at Function.Module._load (internal/modules/cjs/loader.js:507:25)\n    at Module.require (internal/modules/cjs/loader.js:637:17)\n    at require (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack-cli\\node_modules\\v8-compile-cache\\v8-compile-cache.js:161:20)\n    at Object.<anonymous> (D:\\webc_ui\\ui-angularJs\\node_modules\\babel-loader\\lib\\index.js:3:13)\n    at Module._compile (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack-cli\\node_modules\\v8-compile-cache\\v8-compile-cache.js:192:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)\n    at Module.load (internal/modules/cjs/loader.js:599:32)\n    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)\n    at Function.Module._load (internal/modules/cjs/loader.js:530:3)\n    at Module.require (internal/modules/cjs/loader.js:637:17)\n    at require (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack-cli\\node_modules\\v8-compile-cache\\v8-compile-cache.js:161:20)\n    at loadLoader (D:\\webc_ui\\ui-angularJs\\node_modules\\loader-runner\\lib\\loadLoader.js:18:17)\n    at iteratePitchingLoaders (D:\\webc_ui\\ui-angularJs\\node_modules\\loader-runner\\lib\\LoaderRunner.js:169:2)\n    at runLoaders (D:\\webc_ui\\ui-angularJs\\node_modules\\loader-runner\\lib\\LoaderRunner.js:365:2)\n    at NormalModule.doBuild (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack\\lib\\NormalModule.js:295:3)\n    at NormalModule.build (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack\\lib\\NormalModule.js:446:15)\n    at Compilation.buildModule (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack\\lib\\Compilation.js:739:10)\n    at moduleFactory.create (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack\\lib\\Compilation.js:1111:12)\n    at factory (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack\\lib\\NormalModuleFactory.js:409:6)\n    at hooks.afterResolve.callAsync (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack\\lib\\NormalModuleFactory.js:155:13)\n    at AsyncSeriesWaterfallHook.eval [as callAsync] (eval at create (D:\\webc_ui\\ui-angularJs\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:6:1)\n    at AsyncSeriesWaterfallHook.lazyCompileHook (D:\\webc_ui\\ui-angularJs\\node_modules\\tapable\\lib\\Hook.js:154:20)\n    at resolver (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack\\lib\\NormalModuleFactory.js:138:29)\n    at process.nextTick (D:\\webc_ui\\ui-angularJs\\node_modules\\webpack\\lib\\NormalModuleFactory.js:346:9)\n    at process._tickCallback (internal/process/next_tick.js:61:11)");
+var app = angular.module('app', ['navigation', 'contents', 'menu', 'defaultView', 'settingView']);
+var nav = angular.module('navigation', []);
+nav.controller('navControll', function (navService) {
+  this.test = 'tests';
+  this.topMenus = [{
+    iconClass: 'fa fa-server fa-2x',
+    name: 'Service'
+  }, {
+    iconClass: 'fa fa-address-book fa-2x',
+    name: 'Projects'
+  }, {
+    iconClass: 'fa fa-bandcamp fa-2x',
+    name: 'Test'
+  }];
+
+  this.goTo = function () {};
+});
+nav.service('navService', function ($http) {});
+var contents = angular.module('contents', ['ngRoute']);
+contents.config(function ($routeProvider) {
+  $routeProvider.when('/', {
+    templateUrl: '/src/html/tpl/default.html'
+  }).when('/setting', {
+    templateUrl: '/src/html/tpl/setting.html'
+  }).when('/moniter', {
+    templateUrl: '/src/html/tpl/moniter.html'
+  }).otherwise({
+    redirectTo: '/'
+  });
+});
+contents.controller('contentsCtrl', function ($scope) {});
+contents.service('contentsServ', function () {});
+var menu = angular.module('menu', ['ui.router']);
+menu.config(function ($stateProvider) {
+  $stateProvider.state('/', {
+    url: '/',
+    templateUrl: '/src/html/tpl/default.html',
+    controller: 'contentsCtrl'
+  }).state('/setting', {
+    url: '/setting',
+    templateUrl: '/src/html/tpl/setting.html',
+    controller: 'contentsCtrl'
+  }).state('/moniter', {
+    url: '/moniter',
+    templateUrl: '/src/html/tpl/moniter.html',
+    controller: 'contentsCtrl'
+  });
+});
+menu.controller('menuCtrl', function ($state) {
+  this.menuList = [{
+    iconClass: 'fa fa-home fa-2x',
+    name: 'Summary',
+    tab: '/'
+  }, {
+    iconClass: 'fa fa-cogs fa-2x',
+    name: 'Setting',
+    tab: '/setting'
+  }, {
+    iconClass: 'fa fa-television fa-2x',
+    name: 'Moniter',
+    tab: '/moniter'
+  }];
+  this.actives = [];
+
+  this.movePage = function (tab) {
+    console.log("in?", tab);
+
+    switch (tab) {
+      case 0:
+        $state.go(this.menuList[0].tab);
+        console.log("in?", this.menuList[0].tab);
+        break;
+
+      case 1:
+        $state.go(this.menuList[1].tab);
+        break;
+
+      case 2:
+        $state.go(this.menuList[2].tab);
+        break;
+
+      default:
+        $state.go('#/');
+        break;
+    }
+  };
+});
+menu.service('menuService', function () {});
 
 /***/ })
 
