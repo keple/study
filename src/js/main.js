@@ -1,3 +1,11 @@
+require('angular');
+require('angular-route');
+require('angular-ui-router');
+require('../js/service/defaultViewService.js');
+require('../js/service/settingViewService.js');
+var angular = window.angular;
+console.log(angular);
+
 var app = angular.module('app',['navigation','contents','menu','defaultView','settingView'])
 
 var nav = angular.module('navigation',[]);
@@ -108,5 +116,10 @@ menu.service('menuService',function(){
 
 });
 
-
+module.exports = {
+    app : app,
+    nav : nav,
+    contents : contents,
+    menu : menu
+}
 

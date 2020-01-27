@@ -1,3 +1,5 @@
+var defaultView = require('../controller/defaultView.js')
+
 defaultView.service('defaultViewService',function($http){
 
     this.getData = function(){
