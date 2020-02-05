@@ -12,7 +12,8 @@ var app = express();
 
 var compiler = webpack(webpackConfig);
 var middleware = devMiddleWare(compiler,{
-    publicPath : webpackConfig.output.publicPath
+    publicPath : webpackConfig.output.publicPath,
+    hot:true
 })
 console.log(middleware);
 app.use(middleware);

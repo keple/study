@@ -75,8 +75,7 @@ menu.config(function($stateProvider){
         controller:'contentsCtrl'
     })
 
-});
-menu.controller('menuCtrl',function($scope,$state){
+}).controller('menuCtrl',function($scope,$state){
    
     this.menuList = [{
             iconClass:'fa fa-home fa-2x',
@@ -90,7 +89,7 @@ menu.controller('menuCtrl',function($scope,$state){
         },
         {
             iconClass:'fa fa-television fa-2x',
-            name:'Moniter1302',
+            name:'Moniter122113',
             tab:'/moniter'
         }
     ]
@@ -110,15 +109,18 @@ menu.controller('menuCtrl',function($scope,$state){
                 break;
         }
     }
-});
+}).run()
 
 menu.service('menuService',function(){
 
 });
+
 if(module.hot){
     console.log("in???");
     console.log("hotReplace");
     module.hot.accept();
+    console.log("modify");
+    
 }
 
 module.exports = {
