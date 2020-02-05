@@ -31,7 +31,7 @@ nav.controller('navControll',function(navService){
 });
 
 nav.service('navService',function($http){
-   
+   var test="test1";
 
 });
 
@@ -76,8 +76,8 @@ menu.config(function($stateProvider){
     })
 
 });
-menu.controller('menuCtrl',function($state){
-    
+menu.controller('menuCtrl',function($scope,$state){
+   
     this.menuList = [{
             iconClass:'fa fa-home fa-2x',
             name:'Summary',
@@ -90,7 +90,7 @@ menu.controller('menuCtrl',function($state){
         },
         {
             iconClass:'fa fa-television fa-2x',
-            name:'Moniter',
+            name:'Moniter1302',
             tab:'/moniter'
         }
     ]
@@ -115,6 +115,11 @@ menu.controller('menuCtrl',function($state){
 menu.service('menuService',function(){
 
 });
+if(module.hot){
+    console.log("in???");
+    console.log("hotReplace");
+    module.hot.accept();
+}
 
 module.exports = {
     app : app,
